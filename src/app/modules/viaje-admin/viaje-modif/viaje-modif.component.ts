@@ -32,6 +32,7 @@ export class ViajeModifComponent implements OnInit{
   listaPersonas: Persona[] = [];
   //@ts-ignore
   viajeSeleccionado: Viaje | null = null;
+  modeloSeleccionado: Modelo | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -77,6 +78,10 @@ export class ViajeModifComponent implements OnInit{
       //@ts-ignore
       this.listaPersonas = res.body?.map(json => new Persona(json.id, json.age, json.name, json.lastName));
     })
+  }
+
+  getColectivo(item: Colectivo){
+    return item.patente + " - "+ item.cantidadAsientos+" - "+ item.modelo?.marca;
   }
 
   findViaje(id: number) {
