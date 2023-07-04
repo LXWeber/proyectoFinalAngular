@@ -1,9 +1,11 @@
 .card {
   display: flex;
-  background: rgba(42, 84, 92, 0.596);
+  background-color: #869a9e;
   margin: 1em auto;
   width: 80%;
   flex-direction: column;
+  border: 1px solid #03151a;
+  border-radius: 15px;
 }
 
 .title {
@@ -14,10 +16,17 @@
 .back {
   align-self: center;
   position: absolute;
+  color: #131263;
+}
+
+.back:hover{
+  background-color: #8989b1;
+  color: black;
 }
 
 .titulo{
   margin: auto;
+  color: #131263;
 }
 
 form {
