@@ -1,5 +1,11 @@
-table {
-  width: 100%;
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titulo{
+  color: #131263;
 }
 
 .mat-column-id,
@@ -19,11 +25,6 @@ table {
   padding: 0 10px 0 5px;
 }
 
-.header{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
 /* Estilos del dialogo-eliminar.html */
 
