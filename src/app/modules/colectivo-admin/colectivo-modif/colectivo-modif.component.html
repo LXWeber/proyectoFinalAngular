@@ -58,7 +58,7 @@
         <mat-label>Modelo:</mat-label>
         <mat-select formControlName="modelo" required>
           <mat-option *ngFor="let m of listaModelos" [value]="m.id">
-            {{m.marca}} {{m.nombre}}
+            {{m?.marca}} {{m?.nombre}}
           </mat-option>
         </mat-select>
         <!-- <mat-error class="hint" *ngIf="coleForm &&

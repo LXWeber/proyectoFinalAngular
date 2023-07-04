@@ -77,8 +77,6 @@ export class ViajeModifComponent implements OnInit{
       //@ts-ignore
       this.listaPersonas = res.body?.map(json => new Persona(json.id, json.age, json.name, json.lastName));
     })
-    console.log(this.listaPersonas)
-    console.log(this.coleList.length)
   }
 
   findViaje(id: number) {
@@ -114,7 +112,7 @@ export class ViajeModifComponent implements OnInit{
   findModeloColectivo(c: Colectivo){
     this.modeloService.findOne(c.modeloId).subscribe( res => {
       if(res.body){
-        c.modelo = new Modelo(res.body.id,res.body.nombre,String(res.body.marca));
+        c.modelo = new Modelo(res.body.id,res.body.nombre,res.body.marca);
       }
     })
   }

@@ -77,8 +77,8 @@
       <mat-form-field class="form-field">
         <mat-label>Colectivo:</mat-label>
         <mat-select formControlName="colectivo">
-          <mat-option *ngFor="let c of coleList" [value]="c.id">
-            {{c.patente}} - {{c.cantidadAsientos}} -  {{c.modelo.marca}} <!--NO LOGRÉ HACERLO FUNCIONAR SIN ERRORES EN CONSOLA-->
+          <mat-option *ngFor="let c of coleList" [value]="c.id"> 
+            {{c.patente}} - {{c.cantidadAsientos}} -  {{c.modelo?.marca}}
           </mat-option>
         </mat-select>
         <div *ngIf="viajeForm.controls['colectivo'].invalid &&
