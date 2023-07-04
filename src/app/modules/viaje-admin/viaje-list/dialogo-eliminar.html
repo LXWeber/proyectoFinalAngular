@@ -1,0 +1,26 @@
+<div class="dialog-header">
+  <mat-icon color="warn" class="dialog-icon">warning</mat-icon>
+  <h1 mat-dialog-title>
+    <b>¿Está seguro/a de querer eliminar este viaje?</b>
+  </h1>
+</div>
+<div mat-dialog-content class="dialog-content">
+  <div class="fila">
+    <div class="col1">
+      <span>ID:</span>
+      <span>Hasta:</span>
+      <span>Desde:</span>
+      <span>Patente del Colectivo:</span>
+    </div>
+    <div class="col2">
+      <span>{{data.id}}</span>
+      <span>{{data.lugarDestino}}</span>
+      <span>{{data.lugarSalida}}</span>
+      <span>{{data.colectivo}}</span>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-raised-button mat-dialog-close cdkFocusInitial>Atrás</button>
+  <button mat-raised-button mat-dialog-close color="warn" (click)="eliminarViaje(data)">Eliminar</button>
+</div>

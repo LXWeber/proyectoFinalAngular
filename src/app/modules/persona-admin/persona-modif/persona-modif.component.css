@@ -1,0 +1,37 @@
+.card {
+  display: flex;
+  background: rgba(42, 84, 92, 0.596);
+  margin: 1em auto;
+  width: 80%;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.back {
+  align-self: center;
+  position: absolute;
+}
+
+.titulo{
+  margin: auto;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-field {
+  display: flex;
+  width: 80%;
+}
+
+.hint {
+  color: rgb(255, 0, 0);
+  font-size: small;
+}

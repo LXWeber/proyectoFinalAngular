@@ -1,0 +1,30 @@
+.sidenav-container {
+  height: calc(100vh - 98px);
+  width: 22vh;
+  padding: 5%;
+  border-radius: 10px;
+}
+
+
+.boton {
+  width: 95%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1rem;
+  margin: 20px 0 0 3px;
+  border-radius: 1em;
+  background: rgba(42, 84, 92, 0.596);
+  color: rgb(255, 255, 255);
+}
+
+.boton:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgba(1, 10, 12, 0.596);
+}
+
+mat-icon {
+  margin-right: 8px;
+}

@@ -1,0 +1,13 @@
+<app-admin-topbar (expandioBoton)="presionado($event)"></app-admin-topbar>
+
+<mat-drawer-container class="mat-drawer-container" autosize>
+
+  <mat-drawer opened mode="side" disableClose="true">
+    <app-admin-sidebar [isExpanded]="estaExpandido"></app-admin-sidebar>
+  </mat-drawer>
+
+  <div class="contenido">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

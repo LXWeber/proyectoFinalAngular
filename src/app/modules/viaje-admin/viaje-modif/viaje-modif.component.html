@@ -1,0 +1,125 @@
+<mat-card class="card">
+  <mat-card-header class="title">
+    <button type="button" class="back" mat-icon-button (click)="volver()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="titulo" *ngIf="!nuevo">Editando Viaje</h2>
+    <h2 class="titulo" *ngIf="nuevo">Creando Viaje</h2>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="viajeForm" (ngSubmit)="guardarCambios()">
+
+      <mat-form-field class="form-field">
+        <mat-label>Origen: </mat-label>
+        <input matInput type="text" formControlName="origen">
+        <div *ngIf="viajeForm.controls['origen'].invalid &&
+          (viajeForm.controls['origen'].dirty || viajeForm.controls['origen'].touched)">
+          <mat-hint class="hint" *ngIf="viajeForm &&
+          viajeForm.controls &&
+          viajeForm.controls['origen'].errors">
+            <mat-divider></mat-divider>
+            El lugar de origen es Requerido
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Destino: </mat-label>
+        <input matInput type="text" formControlName="destino">
+        <div *ngIf="viajeForm.controls['destino'].invalid &&
+          (viajeForm.controls['destino'].dirty || viajeForm.controls['destino'].touched)">
+          <mat-hint class="hint" *ngIf="viajeForm &&
+          viajeForm.controls &&
+          viajeForm.controls['destino'].errors">
+            <mat-divider></mat-divider>
+            El lugar de destino es Requerido
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Fecha de Salida: </mat-label>
+        <input matInput [matDatepicker]="pickerSalida" formControlName="fechaSalida">
+        <mat-hint>d/M/YY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerSalida"></mat-datepicker-toggle>
+        <mat-datepicker #pickerSalida></mat-datepicker>
+        <input matInput type="text">
+        <div *ngIf="viajeForm.controls['fechaSalida'].invalid &&
+          (viajeForm.controls['fechaSalida'].dirty || viajeForm.controls['fechaSalida'].touched)">
+          <mat-hint class="hint" *ngIf="viajeForm &&
+          viajeForm.controls &&
+          viajeForm.controls['fechaSalida'].errors">
+            <mat-divider></mat-divider>
+            La fecha de salida es Requerida
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Fecha de Llegada: </mat-label>
+        <input matInput [matDatepicker]="pickerLegada" formControlName="fechaLlegada">
+        <mat-hint>d/M/YY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerLegada"></mat-datepicker-toggle>
+        <mat-datepicker #pickerLegada></mat-datepicker>
+        <input matInput type="text">
+        <div *ngIf="viajeForm.controls['fechaLlegada'].invalid &&
+          (viajeForm.controls['fechaLlegada'].dirty || viajeForm.controls['fechaLlegada'].touched)">
+          <mat-hint class="hint" *ngIf="viajeForm &&
+          viajeForm.controls &&
+          viajeForm.controls['fechaLlegada'].errors">
+            <mat-divider></mat-divider>
+            La fecha de llegada es Requerida
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Colectivo:</mat-label>
+        <mat-select formControlName="colectivo">
+          <mat-option *ngFor="let c of coleList" [value]="c.id">
+            {{c.patente}} - {{c.cantidadAsientos}} -  {{c.modelo.marca}} <!--NO LOGRÉ HACERLO FUNCIONAR SIN ERRORES EN CONSOLA-->
+          </mat-option>
+        </mat-select>
+        <div *ngIf="viajeForm.controls['colectivo'].invalid &&
+          (viajeForm.controls['colectivo'].dirty || viajeForm.controls['colectivo'].touched)">
+          <mat-hint class="hint" *ngIf="viajeForm &&
+          viajeForm.controls &&
+          viajeForm.controls['colectivo'].errors">
+            <mat-divider></mat-divider>
+            Seleccione un colectivo
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Pasajeros:</mat-label>
+        <mat-select formControlName="pasajeros" multiple>
+          <mat-option> - </mat-option>
+          <mat-option *ngFor="let p of listaPersonas" [value]="p.id">
+            {{p.nombre}} {{p.apellido}}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="viajeForm.controls['pasajeros'].invalid &&
+          (viajeForm.controls['pasajeros'].dirty || viajeForm.controls['pasajeros'].touched)">
+          <mat-hint class="hint" *ngIf="viajeForm &&
+          viajeForm.controls &&
+          viajeForm.controls['pasajeros'].errors">
+            <mat-divider></mat-divider>
+            Seleccione minimo un pasajero
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-card-actions *ngIf="nuevo">
+        <button mat-raised-button color="primary" [disabled]="viajeForm.invalid">
+          Crear Viaje
+        </button>
+      </mat-card-actions>
+      <mat-card-actions *ngIf="!nuevo">
+        <button mat-raised-button color="primary" [disabled]="viajeForm.invalid">
+          Guardar Cambios
+        </button></mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

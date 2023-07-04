@@ -1,0 +1,88 @@
+<mat-card class="card">
+
+  <mat-card-header class="title">
+    <button type="button" class="back" mat-icon-button (click)="volver()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="titulo" *ngIf="!nuevo">Editando Colectivo</h2>
+    <h2 class="titulo" *ngIf="nuevo">Creando Colectivo</h2>
+  </mat-card-header>
+
+  <mat-card-content>
+      <form [formGroup]="coleForm" (ngSubmit)="guardarCambios()">
+
+      <mat-form-field class="form-field">
+        <mat-label>Patente:</mat-label>
+        <input matInput type="text" formControlName="patente">
+        <div *ngIf="coleForm.controls['patente'].invalid &&
+            (coleForm.controls['patente'].dirty || coleForm.controls['patente'].touched)">
+          <mat-hint class="hint" *ngIf="coleForm &&
+            coleForm.controls &&
+            coleForm.controls['patente'].errors">
+            <mat-divider></mat-divider>
+            La patente es requerida
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>N° de asientos:</mat-label>
+        <input matInput type="number" formControlName="cantidadAsientos">
+        <div *ngIf="coleForm.controls['cantidadAsientos'].invalid &&
+            (coleForm.controls['cantidadAsientos'].dirty || coleForm.controls['cantidadAsientos'].touched)">
+          <mat-hint class="hint" *ngIf="coleForm &&
+            coleForm.controls &&
+            coleForm.controls['cantidadAsientos'].errors &&
+            coleForm.controls['cantidadAsientos'].errors['required']">
+            <mat-divider></mat-divider>
+            La cantidad de asientos es requerida
+          </mat-hint>
+          <mat-hint class="hint" *ngIf="coleForm &&
+          coleForm.controls &&
+          coleForm.controls['cantidadAsientos'].errors &&
+          coleForm.controls['cantidadAsientos'].errors['min']">
+            <mat-divider></mat-divider>
+            Mínimo 1 asiento
+          </mat-hint>
+          <mat-hint class="hint" *ngIf="coleForm &&
+          coleForm.controls &&
+          coleForm.controls['cantidadAsientos'].errors &&
+          coleForm.controls['cantidadAsientos'].errors['max']">
+            <mat-divider></mat-divider>
+            Máximo 70 asientos
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Modelo:</mat-label>
+        <mat-select formControlName="modelo" required>
+          <mat-option *ngFor="let m of listaModelos" [value]="m.id">
+            {{m.marca}} {{m.nombre}}
+          </mat-option>
+        </mat-select>
+        <!-- <mat-error class="hint" *ngIf="coleForm &&
+            coleForm.controls &&
+            coleForm.controls['modelo'].errors &&
+            coleForm.controls['modelo'].errors['required']">
+            <mat-divider></mat-divider>
+            Se requiere seleccione un modelo
+          </mat-error> -->
+          <mat-error *ngIf="coleForm &&
+          coleForm.controls &&
+          coleForm.controls['modelo'].errors &&
+          coleForm.controls['modelo'].errors['required']">
+            Se requiere seleccione un modelo
+          </mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="coleForm.invalid">
+          <span *ngIf="nuevo">Crear Colectivo</span>
+          <span *ngIf="!nuevo">Guardar Cambios</span>
+        </button>
+      </mat-card-actions>
+
+    </form>
+    </mat-card-content>
+  </mat-card>

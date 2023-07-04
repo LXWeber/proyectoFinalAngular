@@ -1,0 +1,83 @@
+
+<mat-card class="card">
+
+  <mat-card-header class="title">
+    <button type="button" class="back" mat-icon-button (click)="volver()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="titulo" *ngIf="!nuevo">Editando Pasajero</h2>
+    <h2 class="titulo" *ngIf="nuevo">Creando Pasajero</h2>
+  </mat-card-header>
+
+  <mat-card-content class="card-content">
+      <form [formGroup]="personForm" (ngSubmit)="guardarCambios()">
+
+      <mat-form-field class="form-field">
+        <mat-label>Nombre: </mat-label>
+        <input matInput type="text" formControlName="nombre">
+        <div *ngIf="personForm.controls['nombre'].invalid &&
+          (personForm.controls['nombre'].dirty || personForm.controls['nombre'].touched)">
+          <mat-hint class="hint" *ngIf="personForm &&
+          personForm.controls &&
+          personForm.controls['nombre'].errors">
+            <mat-divider></mat-divider>
+            El nombre es Requerido
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Apellido: </mat-label>
+        <input matInput type="text" formControlName="apellido">
+        <div *ngIf="personForm.controls['apellido'].invalid &&
+          (personForm.controls['apellido'].dirty || personForm.controls['apellido'].touched)">
+          <mat-hint class="hint" *ngIf="personForm &&
+          personForm.controls &&
+          personForm.controls['apellido'].errors">
+            <mat-divider></mat-divider>
+            El apellido es Requerido
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Edad: </mat-label>
+        <input matInput type="number" formControlName="edad">
+        <div *ngIf="personForm.controls['edad'].invalid &&
+          (personForm.controls['edad'].dirty || personForm.controls['edad'].touched)">
+          <mat-hint class="hint" *ngIf="personForm &&
+          personForm.controls &&
+          personForm.controls['edad'].errors &&
+          personForm.controls['edad'].errors['required']">
+            <mat-divider></mat-divider>
+            La edad es Requerida
+          </mat-hint>
+          <mat-hint class="hint" *ngIf="personForm &&
+          personForm.controls &&
+          personForm.controls['edad'].errors &&
+          personForm.controls['edad'].errors['min']">
+            <mat-divider></mat-divider>
+            La edad no puede ser un numero negativo
+          </mat-hint>
+          <mat-hint class="hint" *ngIf="personForm &&
+          personForm.controls &&
+          personForm.controls['edad'].errors &&
+          personForm.controls['edad'].errors['max']">
+            <mat-divider></mat-divider>
+            La edad debe ser menor o igual a 110 años
+          </mat-hint>
+        </div>
+      </mat-form-field>
+
+      <mat-card-actions *ngIf="nuevo">
+        <button mat-raised-button color="primary" [disabled]="personForm.invalid">
+          Crear Pasajero
+        </button>
+      </mat-card-actions>
+      <mat-card-actions *ngIf="!nuevo">
+        <button mat-raised-button color="primary" [disabled]="personForm.invalid">
+          Guardar Cambios
+        </button></mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
