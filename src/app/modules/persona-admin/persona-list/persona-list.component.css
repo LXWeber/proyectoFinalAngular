@@ -21,6 +21,12 @@ table {
 
 /* Estilos del dialogo-eliminar.html */
 
+.dialogo{
+  border: 1px solid #630a03;
+  background-color: #c98f86;
+  border-radius: 5px;
+}
+
 .dialog-header{
   display: flex;
   flex-direction: column;
@@ -33,7 +39,6 @@ table {
   height: max-content;
   width: max-content;
 }
-
 
 .dialog-content{
   display: flex;
