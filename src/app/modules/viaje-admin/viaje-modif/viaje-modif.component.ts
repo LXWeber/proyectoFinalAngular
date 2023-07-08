@@ -80,6 +80,14 @@ export class ViajeModifComponent implements OnInit{
     })
   }
 
+  compareObjects(o1: any, o2: any) {
+    if(o1 && o2 && o1.id == o2.id)
+      return true;
+
+    else
+      return false
+  }
+
   getColectivo(item: Colectivo){
     return item.patente + " - "+ item.cantidadAsientos+" - "+ item.modelo?.marca;
   }
@@ -96,6 +104,8 @@ export class ViajeModifComponent implements OnInit{
             res.body.fechaSalida,
             res.body.idColectivo,
             );
+          this.viajeSeleccionado.pasajeros = res.body.personaId;
+          console.log(this.viajeSeleccionado.pasajeros)
           this.viajeForm.patchValue({
             id: this.viajeSeleccionado.id,
             origen: this.viajeSeleccionado.lugarSalida,
@@ -103,6 +113,7 @@ export class ViajeModifComponent implements OnInit{
             fechaSalida: this.viajeSeleccionado.fechaSalida,
             fechaLlegada: this.viajeSeleccionado.fechaLlegada,
             colectivo: this.viajeSeleccionado.idCole,
+            pasajeros: this.viajeSeleccionado.pasajeros
           });
         }
       },
@@ -126,7 +137,8 @@ export class ViajeModifComponent implements OnInit{
     this.router.navigate(['layout', 'viajes', 'lista']);
   }
 
-  guardarCambios() {
+  guardarCambios() {//@ts-ignore
+    const pasajeros: number[] = this.viajeForm.get('pasajeros').value;
     const body: ViajeDTO = {
       //@ts-ignore
       id: null,
@@ -135,7 +147,7 @@ export class ViajeModifComponent implements OnInit{
       fechaLlegada: this.viajeForm.get('fechaLlegada')?.value,
       fechaSalida: this.viajeForm.get('fechaSalida')?.value,
       idColectivo: this.viajeForm.get('colectivo')?.value,
-      personaId: this.viajeForm.get('pasajeros')?.value,
+      personaId: pasajeros,
     };
 
     if (!this.nuevo) {//@ts-ignore

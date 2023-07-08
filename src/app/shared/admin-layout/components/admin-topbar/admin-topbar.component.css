@@ -1,6 +1,22 @@
-img{
-    width: 54px;
-    position: absolute;
-    right: 50px;
-    border-radius: 10px;
-  }
+.mat-toolbar {
+  justify-content: center;
+}
+
+.menu {
+  position: absolute;
+  left: 10px;
+}
+
+.rcc {
+  display: flex;
+}
+
+img {
+  width: 54px;
+  right: 50px;
+  border-radius: 10px;
+}
+
+span {
+  margin-left: 5px;
+}

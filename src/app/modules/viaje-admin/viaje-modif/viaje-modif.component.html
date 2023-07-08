@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card animate__animated animate__fadeIn">
   <mat-card-header class="title">
     <button type="button" class="back" mat-icon-button (click)="volver()">
       <mat-icon>arrow_back</mat-icon>
@@ -94,7 +94,7 @@
 
       <mat-form-field class="form-field">
         <mat-label>Pasajeros:</mat-label>
-        <mat-select formControlName="pasajeros" multiple>
+        <mat-select formControlName="pasajeros" multiple [compareWith]="compareObjects">
           <mat-option> - </mat-option>
           <mat-option *ngFor="let p of listaPersonas" [value]="p.id">
             {{p.nombre}} {{p.apellido}}

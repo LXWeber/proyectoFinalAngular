@@ -1,8 +1,11 @@
 .mat-drawer-container {
   height: 90%;
+  background-color: #e2e7e8;
+  overflow: hidden;
 }
 
 .contenido{
   padding: 20px;
+  background-color: #e2e7e8;
 }
 
