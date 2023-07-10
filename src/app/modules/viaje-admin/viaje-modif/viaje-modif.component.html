@@ -94,7 +94,7 @@
 
       <mat-form-field class="form-field">
         <mat-label>Pasajeros:</mat-label>
-        <mat-select formControlName="pasajeros" multiple [compareWith]="compareObjects">
+        <mat-select formControlName="pasajeros" multiple>
           <mat-option> - </mat-option>
           <mat-option *ngFor="let p of listaPersonas" [value]="p.id">
             {{p.nombre}} {{p.apellido}}
@@ -104,7 +104,8 @@
           (viajeForm.controls['pasajeros'].dirty || viajeForm.controls['pasajeros'].touched)">
           <mat-hint class="hint" *ngIf="viajeForm &&
           viajeForm.controls &&
-          viajeForm.controls['pasajeros'].errors">
+          viajeForm.controls['pasajeros'].errors &&
+          viajeForm.controls['pasajeros'].errors['required']">
             <mat-divider></mat-divider>
             Seleccione minimo un pasajero
           </mat-hint>

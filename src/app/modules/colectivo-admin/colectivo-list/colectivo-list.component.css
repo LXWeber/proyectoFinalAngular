@@ -24,6 +24,7 @@
 
 /* Estilos del dialogo-eliminar.html */
 
+
 .dialogo{
   border: 1px solid #630a03;
   background-color: #f2e4e2;
@@ -40,8 +41,8 @@
   font-size: 350%;
   margin-top: 20px;
   height: max-content;
-  width: max-content;}
-
+  width: max-content;
+}
 
 .dialog-content{
   display: flex;
@@ -53,17 +54,21 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: auto;
 }
 
 .col1{
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
 }
 
 .col2{
   display: flex;
   flex-direction: column;
   margin-left: 1em;
+  gap: 5px;
 }
 
 .dialog-actions {

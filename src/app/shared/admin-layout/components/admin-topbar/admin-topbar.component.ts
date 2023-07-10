@@ -15,8 +15,6 @@ export class AdminTopbarComponent {
   onClick() {
     this.expandido = !this.expandido;
     this.expandioBoton.emit(this.expandido);
-    console.log("click!");
-    console.log(this.expandido);
   }
 
 }

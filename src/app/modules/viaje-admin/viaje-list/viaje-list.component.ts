@@ -16,13 +16,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PersonaService } from 'src/app/services/persona.service';
 import { Persona } from 'src/app/models/persona';
 import { forkJoin } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-viaje-list',
   templateUrl: './viaje-list.component.html',
   styleUrls: ['./viaje-list.component.css'],
 })
+
 export class ViajeListComponent implements OnInit {
+
+  pasajerosList: Persona[] = [];
+
   displayedColumns = [
     'id',
     'origen',
@@ -60,84 +65,18 @@ export class ViajeListComponent implements OnInit {
           res.idColectivo
         );
         v.pasajeros = res.personaId;
-        /* this.obtenerPersonas(v.pasajeros); */
-        console.log(v.pasajeros);
         this.findColectivo(v);
         return v;
       });
     });
-  }
-
-  /* obtenerPersonas(ids: number[]) {
-    const observables = ids.map((id) => this.personaService.findOne(id));
-
-    forkJoin(observables).subscribe((responses) => {
-      const lista: Persona[] = responses.map((res) => {
-        return new Persona(
-          res.body.id,
-          res.body.edad,
-          res.body.name,
-          res.body.lastName
-        );
+    this.personaService.findAll().subscribe( res =>{
+      //@ts-ignore
+      this.pasajerosList = res.body?.map( res => {
+        const p = new Persona(res.id, res.age, res.name, res.lastName);
+        return p;
       });
-      return item.patente + " - "+ item.cantidadAsientos+" - "+ item.modelo?.marca;
     });
-  } */
-
-  /* obtenerPersonas(ids: number[]) {
-    const observables = [];
-
-    for (var item of ids) {
-      observables.push(this.personaService.findOne(item));
-    }
-
-    forkJoin(observables).subscribe((responses) => {
-      for (var res of responses) {
-        const p = new Persona(
-          res.body.id,
-          res.body.edad,
-          res.body.name,
-          res.body.lastName
-        );
-        console.log(p);
-      }
-    });
-  } */
-
-  /* funcion(value:number[]){
-    for (var item of value) {
-      this.personaService.findOne(item).subscribe( res => {
-        const p = new Persona(
-          res.body.id,
-          res.body.edad,
-          res.body.name,
-          res.body.lastName,
-        )
-        console.log(p)
-      })}
-       */
-  /* this.personaService.findOne(value).subscribe( res => {
-      const p = new Persona(
-        res.body.id,
-        res.body.edad,
-        res.body.nombre,
-        res.body.apellido,
-      )
-      console.log(p.nombre);
-    }) */
-  /* } */
-  getPasajeros(pasajeros: number[]) {
-    //@ts-ignore
-    /* pasajeros.forEach(item => {
-      this.personaService.findOne(item).subscribe( res => {
-        console.log(res.nombre);
-      })
-    }); */
   }
-
-  /*   const recorreArray = arr => arr.forEach(item => {
-    console.log(item);
-  }); */
 
   findColectivo(v: Viaje) {
     this.colectivoService.findOne(v.idCole).subscribe((res) => {
@@ -151,6 +90,20 @@ export class ViajeListComponent implements OnInit {
 
   modificar(v: Viaje) {
     this.router.navigate(['layout', 'viajes', 'modif', v.id]);
+  }
+
+  obtenerPersonas(ids: number[]) {
+    let lista: Persona[] = []
+    for(var i of ids){//@ts-ignore
+      this.pasajerosList.map( res => {
+        if(res.id == i){ lista.push(res) }
+      })
+    }
+    return lista;
+  }
+
+  dialogoPasajeros(x: Persona[]){
+    this.dialog.open(DialogoPasajeros, {data: x});
   }
 
   dialogoEliminar(v: Viaje) {
@@ -171,6 +124,7 @@ export class ViajeListComponent implements OnInit {
   }
 }
 
+///////////////////DIALOGO ELIMINAR
 @Component({
   selector: 'dialogo-eliminar',
   templateUrl: './dialogo-eliminar.html',
@@ -202,4 +156,23 @@ export class DialogoEliminar {
       }
     );
   }
+}
+
+///////////////////DIALOGO PASAJEROS
+@Component({
+  selector: 'dialogo-pasajeros',
+  templateUrl: './dialogo-pasajeros.html',
+  styleUrls: ['./viaje-list.component.css'],
+  standalone: true,
+  imports: [FormsModule, MaterialModule, CommonModule],
+})
+
+export class DialogoPasajeros {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogoPasajeros>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: Persona[],
+  ) {}
+
 }

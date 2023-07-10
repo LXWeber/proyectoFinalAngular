@@ -14,6 +14,7 @@
 .mat-column-fechaSalida,
 .mat-column-fechaLlegada,
 .mat-column-colectivo,
+.mat-column-pasajeros,
 .mat-column-acciones{
   text-align: center;
 }
@@ -26,25 +27,26 @@
 }
 
 
-/* Estilos del dialogo-eliminar.html */
+/* Estilos del dialogo-eliminar */
 
-.dialogo{
+.dialogo-e{
   border: 1px solid #630a03;
   background-color: #f2e4e2;
   border-radius: 5px;
 }
 
-.dialog-header{
+.dialog-header-e{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.dialog-icon{
+.dialog-icon-e{
   font-size: 350%;
   margin-top: 20px;
   height: max-content;
-  width: max-content;}
+  width: max-content;
+}
 
 .dialog-content{
   display: flex;
@@ -56,20 +58,54 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: auto;
 }
 
 .col1{
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
 }
 
 .col2{
   display: flex;
   flex-direction: column;
   margin-left: 1em;
+  gap: 5px;
 }
 
 .dialog-actions {
   display: flex;
   justify-content: space-around;
+}
+
+/* Estilos del dialogo-pasajeros */
+
+.dialogo-p{
+  border: 1px solid #060535;
+  background-color: #e3e3ec;
+  border-radius: 5px;
+}
+
+.dialog-header-p{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dialog-icon-p{
+  font-size: 200%;
+  margin: 15px 3px 0 20px;
+  height: max-content;
+  width: max-content;
+}
+
+.ul{
+  list-style: none;
+  font-style: italic;
+}
+
+.dialog-title{
+  padding: 0 20px 5px 2px;
 }

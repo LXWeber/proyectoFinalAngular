@@ -1,0 +1,14 @@
+<div class="dialogo-p">
+  <div class="dialog-header-p">
+    <mat-icon class="dialog-icon-p">groups</mat-icon>
+    <h1 mat-dialog-title class="dialog-title">
+      <b>Lista de pasajeros:</b>
+    </h1>
+  </div>
+  <ul *ngFor="let j of data" class="ul">
+    <li>{{j.nombre}} {{j.apellido}}</li>
+  </ul>
+  <div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>Atrás</button>
+  </div>
+</div>

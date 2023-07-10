@@ -80,14 +80,6 @@ export class ViajeModifComponent implements OnInit{
     })
   }
 
-  compareObjects(o1: any, o2: any) {
-    if(o1 && o2 && o1.id == o2.id)
-      return true;
-
-    else
-      return false
-  }
-
   getColectivo(item: Colectivo){
     return item.patente + " - "+ item.cantidadAsientos+" - "+ item.modelo?.marca;
   }
@@ -105,7 +97,6 @@ export class ViajeModifComponent implements OnInit{
             res.body.idColectivo,
             );
           this.viajeSeleccionado.pasajeros = res.body.personaId;
-          console.log(this.viajeSeleccionado.pasajeros)
           this.viajeForm.patchValue({
             id: this.viajeSeleccionado.id,
             origen: this.viajeSeleccionado.lugarSalida,
